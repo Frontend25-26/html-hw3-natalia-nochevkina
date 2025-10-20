@@ -1,6 +1,200 @@
-body {
-    margin: 0;
-    padding: 0;
+* {
+    --background-color: white;
+    --button-color: white;
 
-    background: #292929;
+    --main-color:  black;
+    --main-color-checked: lightblue;
+    --green-color: #196e19;
+    --red-color: #9a1717;
+
+    --main-color-hover: #e8e8e8;
+    --green-color-hover: #cdffcd;
+    --red-color-hover: #ffd2d2;
+}
+
+html {
+    margin:      2em;
+    font-family: 'Brush Script MT', cursive;
+    background:  var(--background-color);
+    color:       var(--main-color);
+    input        { display: none; }
+}
+
+.box {
+    display:   block;
+    max-width: 50%;
+
+    &.variant {
+        margin:  0.75em 0.75em 0 0;
+    }
+
+    padding: 0.7em;
+    overflow-wrap: break-word;
+
+    /*border-radius: 0.5em;*/
+    border: solid 1px;
+    border-left:   solid 0.35em;
+    border-right:  solid 0.35em;
+    border-color:  var(--main-color);
+    color:         var(--main-color);
+
+    background-color: var(--button-color);
+    box-shadow: 0.35em 0.35em lightgrey;
+
+    &:hover {
+        background: var(--main-color-hover);
+        transform: scale(1.05);
+    }
+    transition: background-color 0.5s,
+                border-color 0.3s,
+                color 0.3s,
+                transform 0.2s;
+}
+
+:not(label.variant) {
+    &.box {
+        pointer-events: none;
+        transition: none;
+    }
+}
+
+.hidden {
+    animation: fadeInScale 0.4s ease;
+}
+@keyframes fadeInScale {
+    from {
+        opacity: 0.5;
+        transform: scale(1.05);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Тут находится логика переключения вопросов (radiobutton)*/
+body {
+    &:has([id="lock0"]:checked) {
+        div.app[id*="app"] { display: none; }
+        div.app[id="app1"] { display: block; }
+    }
+
+    &:has([id="lock1"]:checked) {
+        div.app[id*="app"] { display: none; }
+        div.app[id="app2"] { display: block; }
+    }
+
+    &:has([id="lock2"]:checked) {
+        div.app[id*="app"] { display: none; }
+        div.app[id="app3"] { display: block; }
+    }
+
+    &:has([id="lock3"]:checked) {
+        div.app[id*="app"] { display: none; }
+        div.app[id="app4"] { display: block; }
+    }
+
+    &:has([id="lock4"]:checked) {
+        div.app[id*="app"] { display: none; }
+        div.app[id="app5"] { display: block; }
+    }
+
+    &:has([id="lock5"]:checked) {
+        div.app[id*="app"]       { display: none; }
+        div.app[id="app-result"] { display: block; }
+    }
+}
+
+.app {
+    .hidden         { display: none; }
+    .hidden.unknown { display: block; }
+    .hidden.true    { color: var(--green-color); }
+    .hidden.false   { color: var(--red-color); }
+}
+
+/*Общая логика отображения после выбора нужного количества вариантов*/
+.app.one:has(input[id*="answer"]:checked),
+.app.two:has(input[id*="answer"]:checked ~ input[id*="answer"]:checked),
+.app.three:has(input[id*="answer"]:checked ~ input[id*="answer"]:checked ~ input[id*="answer"]:checked) {
+    .hidden.lock    { display: block; }
+    .hidden.unknown { display: none; }
+
+    input[id*="answer"] + .variant {
+        &:hover         { transform: scale(1.00); }
+        &:active        {
+            pointer-events: none;
+            transition: none;
+        }
+    }
+
+    .variant.true, .hidden.true {
+        border-color: var(--green-color);
+        color:        var(--green-color);
+        &:hover, &:active {
+            background:  var(--green-color-hover);
+        }
+    }
+
+    .variant.false, .hidden.false {
+        border-color: var(--red-color);
+        color:        var(--red-color);
+        &:hover, &:active {
+            background:  var(--red-color-hover);
+        }
+    }
+
+    &:has(input[id*="answer"]:checked + .variant.true) {
+        input[id*="answer"]:checked + .variant.true {
+            background: var(--green-color-hover);
+        }
+    }
+
+    &:has(input[id*="answer"]:checked + .variant.false) {
+        input[id*="answer"]:checked + .variant.false {
+            background: var(--red-color-hover);
+        }
+    }
+
+    &:has(input[id*="answer"]:checked + .variant.false) {
+        .hidden.false { display: block; }
+    }
+}
+
+/*Логика вывода "правильности" ответов*/
+.app.one:has(input[id*="answer"]:checked + .variant.true),
+.app.two:has(input[id*="answer"]:checked + .variant.true ~ input[id*="answer"]:checked + .variant.true),
+.app.three:has(input[id*="answer"]:checked + .variant.true ~ input[id*="answer"]:checked + .variant.true ~ input[id*="answer"]:checked + .variant.true) {
+    .hidden.true { display: block; }
+}
+
+/*Если не выбрано нужное количество вариантов*/
+.app.one:not(:has(input[id*="answer"]:checked)),
+.app.two:not(:has(input[id*="answer"]:checked ~ input[id*="answer"]:checked)),
+.app.three:not(:has(input[id*="answer"]:checked ~ input[id*="answer"]:checked ~ input[id*="answer"]:checked)) {
+    input[id*="answer"]:checked + .variant {
+        background: var(--main-color-checked);
+    }
+}
+
+/*Логика того, как раскрашиваются ответы в результате*/
+body {
+    &:has(#app1 input[id*="answer1"]:checked + .variant.true) #result1,
+    &:has(#app2 input[id*="answer2"]:checked + .variant.true) #result2,
+    &:has(#app3 input[id*="answer3"]:checked + .variant.true) #result3,
+    &:has(#app4 input[id*="answer4"]:checked + .variant.true) #result4,
+    &:has(#app5 input[id*="answer5"]:checked + .variant.true) #result5{
+        border-color: var(--green-color);
+        color:        var(--green-color);
+        background:   var(--green-color-hover);
+    }
+
+    &:has(#app1 input[id*="answer1"]:checked + .variant.false) #result1,
+    &:has(#app2 input[id*="answer2"]:checked + .variant.false) #result2,
+    &:has(#app3 input[id*="answer3"]:checked + .variant.false) #result3,
+    &:has(#app4 input[id*="answer4"]:checked + .variant.false) #result4,
+    &:has(#app5 input[id*="answer5"]:checked + .variant.false) #result5 {
+        border-color: var(--red-color);
+        color:        var(--red-color);
+        background:   var(--red-color-hover);
+    }
 }

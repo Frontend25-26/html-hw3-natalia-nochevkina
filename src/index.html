@@ -7,8 +7,182 @@
     <title>HW3</title>
 </head>
 <body>
-    <div id="app">
-        
+<label>
+    <input type="radio" id="lock0" name="choose-question" checked>
+</label>
+
+<div class="app two" id="app1">
+        <h1 class="box">Question 1</h1>
+        <p class="box hidden unknown">Выберите ответ</p>
+        <p class="box hidden true">Ответ верный</p>
+        <p class="box hidden false">Ответ неверный</p>
+
+        <input type="checkbox" id="answer1-1" name="question1"/>
+        <label for="answer1-1" class="box variant true">
+            1
+        </label>
+
+        <input type="checkbox" id="answer1-2" name="question1"/>
+        <label for="answer1-2" class= "box variant true">
+            2
+        </label>
+
+        <input type="checkbox" id="answer1-3" name="question1"/>
+        <label for="answer1-3" class="box variant false">
+            3
+        </label>
+
+        <input type="checkbox" id="answer1-4" name="question1"/>
+        <label for="answer1-4" class="box variant false">
+            4
+        </label>
+
+        <hr class="hidden lock">
+        <input type="radio" id="lock1" name="choose-question"/>
+        <label for="lock1" class="box variant hidden lock">Следующий вопрос</label>
     </div>
+
+    <div class="app one" id="app2">
+        <h1 class="box">Question 2</h1>
+
+        <p class="box hidden unknown">Выберите ответ</p>
+        <p class="box hidden true">Ответ верный</p>
+        <p class="box hidden false">Ответ неверный</p>
+
+        <input type="radio" id="answer2-1" name="question2"/>
+        <label for="answer2-1" class="box variant false">
+            1
+        </label>
+
+        <input type="radio" id="answer2-2" name="question2"/>
+        <label for="answer2-2" class= "box variant true">
+            2
+        </label>
+
+        <input type="radio" id="answer2-3" name="question2"/>
+        <label for="answer2-3" class="box variant false">
+            3
+        </label>
+
+        <input type="radio" id="answer2-4" name="question2"/>
+        <label for="answer2-4" class="box variant false">
+            4
+        </label>
+        <hr class="hidden lock">
+        <input type="radio" id="lock2" name="choose-question"/>
+        <label for="lock2" class="box variant hidden lock">Следующий вопрос</label>
+    </div>
+
+    <div class="app one" id="app3">
+        <h1 class="box">Question 3</h1>
+
+        <p class="box hidden unknown">Выберите ответ</p>
+        <p class="box hidden true">Ответ верный</p>
+        <p class="box hidden false">Ответ неверный</p>
+
+        <input type="radio" id="answer3-1" name="question3"/>
+        <label for="answer3-1" class="box variant false">
+            1
+        </label>
+
+        <input type="radio" id="answer3-2" name="question3"/>
+        <label for="answer3-2" class= "box variant true">
+            2
+        </label>
+
+        <input type="radio" id="answer3-3" name="question3"/>
+        <label for="answer3-3" class="box variant false">
+            3
+        </label>
+
+        <input type="radio" id="answer3-4" name="question3"/>
+        <label for="answer3-4" class="box variant false">
+            4
+        </label>
+
+        <hr class="hidden lock">
+        <input type="radio" id="lock3" name="choose-question"/>
+        <label for="lock3" class="box variant hidden lock">Следующий вопрос</label>
+    </div>
+
+    <div class="app two" id="app4">
+        <h1 class="box">Question4 (х2)</h1>
+
+        <p class="box hidden unknown">Выберите 2 варианта ответа</p>
+        <p class="box hidden true">Ответы верны</p>
+        <p class="box hidden false">Есть ошибка</p>
+
+        <input type="checkbox" id="answer4-1" class="question4"/>
+        <label for="answer4-1" class="box variant true">
+            1
+        </label>
+
+        <input type="checkbox" id="answer4-2" class="question4"/>
+        <label for="answer4-2" class="box variant true">
+            2
+        </label>
+
+        <input type="checkbox" id="answer4-3" class="question4"/>
+        <label for="answer4-3" class="box variant false">
+            3
+        </label>
+
+        <input type="checkbox" id="answer4-4" class="question4"/>
+        <label for="answer4-4" class="box variant false">
+            4
+        </label>
+
+        <hr class="hidden lock">
+        <input type="radio" id="lock4" name="choose-question"/>
+        <label for="lock4" class="box variant hidden lock">Следующий вопрос</label>
+    </div>
+
+    <div class="app three" id="app5">
+        <h1 class="box">Question5 (х3)</h1>
+
+        <p class="box hidden unknown">Выберите 2 варианта ответа</p>
+        <p class="box hidden true">Ответы верны</p>
+        <p class="box hidden false">Есть ошибка</p>
+
+        <input type="checkbox" id="answer5-1" class="question4"/>
+        <label for="answer5-1" class="box variant true">
+            1
+        </label>
+
+        <input type="checkbox" id="answer5-2" class="question4"/>
+        <label for="answer5-2" class="box variant true">
+            2
+        </label>
+
+        <input type="checkbox" id="answer5-3" class="question4"/>
+        <label for="answer5-3" class="box variant true">
+            3
+        </label>
+
+        <input type="checkbox" id="answer5-4" class="question4"/>
+        <label for="answer5-4" class="box variant false">
+            4
+        </label>
+
+        <hr class="hidden lock">
+        <input type="radio" id="lock5" name="choose-question"/>
+        <label for="lock5" class="box variant hidden lock">Следующий вопрос</label>
+    </div>
+
+    <div class="app hidden" id="app-result">
+        <h1 class="box">Вы прошли тест!</h1>
+        <p class="box">Результаты</p>
+        <p class="box result" id="result1">Вопрос 1</p>
+        <p class="box result" id="result2">Вопрос 2</p>
+        <p class="box result" id="result3">Вопрос 3</p>
+        <p class="box result" id="result4">Вопрос 4</p>
+        <p class="box result" id="result5">Вопрос 5</p>
+    </div>
+
+
+
 </body>
+<footer>
+    <p>Цветкова (Ночевкина) Наталья, 2025</p>
+</footer>
 </html>
