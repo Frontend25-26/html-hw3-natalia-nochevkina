@@ -8,234 +8,249 @@
 </head>
 <body>
 <label>
-    <input type="radio" id="lock0" name="choose-question" checked>
+    <input type="radio" id="next0" name="choose-question" checked>
 </label>
 
 <div class="app one" id="app1">
         <h1 class="box">Какой тег HTML используется для вставки изображения?</h1>
         <p class="box hidden unknown">Выберите ответ</p>
-        <p class="box hidden true">Ответ верный</p>
-        <p class="box hidden false">Ответ неверный</p>
+        <p class="box hidden show-correct">Ответ верный</p>
+        <p class="box hidden show-not-correct">Ответ неверный</p>
 
-        <input type="checkbox" id="answer1-1" name="question1"/>
-        <label for="answer1-1" class="box variant true">
+        <input type="radio" id="answer1-1" name="question1"/>
+        <label for="answer1-1" class="box variant" data-correct="true">
             <code>&lt;img&gt</code>
         </label>
 
-        <input type="checkbox" id="answer1-2" name="question1"/>
-        <label for="answer1-2" class= "box variant false">
+        <input type="radio" id="answer1-2" name="question1"/>
+        <label for="answer1-2" class="box variant" data-correct="false">
             <code>&lt;image&gt</code>
         </label>
 
-        <input type="checkbox" id="answer1-3" name="question1"/>
-        <label for="answer1-3" class="box variant false">
+        <input type="radio" id="answer1-3" name="question1"/>
+        <label for="answer1-3" class="box variant" data-correct="false">
             <code>&lt;src&gt</code>
         </label>
 
-        <input type="checkbox" id="answer1-4" name="question1"/>
-        <label for="answer1-4" class="box variant false">
+        <input type="radio" id="answer1-4" name="question1"/>
+        <label for="answer1-4" class="box variant" data-correct="false">
             <code>&lt;picture&gt</code>
         </label>
 
-        <hr class="hidden lock">
-        <input type="radio" id="lock1" name="choose-question"/>
-        <label for="lock1" class="box variant hidden lock">Следующий вопрос</label>
+        <hr class="hidden next">
+        <input type="radio" id="lock1" name="lock-in-question"/>
+        <label for="lock1" class="box variant hidden lock">Ответить</label>
+        <input type="radio" id="next1" name="choose-question"/>
+        <label for="next1" class="box variant hidden next">Следующий вопрос</label>
     </div>
 
     <div class="app two" id="app2">
         <h1 class="box">Что делает атрибут alt в теге &lt;img&gt?</h1>
 
         <p class="box hidden unknown">Выберите 2 ответа</p>
-        <p class="box hidden true">Ответы верны</p>
-        <p class="box hidden false">Есть ошибки</p>
+        <p class="box hidden show-correct">Ответы верны</p>
+        <p class="box hidden show-not-correct">Есть ошибки</p>
 
         <input type="checkbox" id="answer2-1" name="question2"/>
-        <label for="answer2-1" class="box variant true">
+        <label for="answer2-1" class="box variant" data-correct="true">
             Задает текст для отображения, если картинка не загрузилась
         </label>
 
         <input type="checkbox" id="answer2-2" name="question2"/>
-        <label for="answer2-2" class= "box variant false">
+        <label for="answer2-2" class="box variant" data-correct="false">
             Делает изображение кликабельным
         </label>
 
-        <input type="radio" id="answer2-3" name="question2"/>
-        <label for="answer2-3" class="box variant true">
+        <input type="checkbox" id="answer2-3" name="question2"/>
+        <label for="answer2-3" class="box variant" data-correct="true">
             Помогает поисковым системам и технологиям доступности понять содержание картинки
         </label>
 
         <input type="checkbox" id="answer2-4" name="question2"/>
-        <label for="answer2-4" class="box variant false">
+        <label for="answer2-4" class="box variant" data-correct="false">
             Определяет стиль рамки вокруг картинки
         </label>
-        <hr class="hidden lock">
-        <input type="checkbox" id="lock2" name="choose-question"/>
-        <label for="lock2" class="box variant hidden lock">Следующий вопрос</label>
+        <hr class="hidden next">
+        <input type="radio" id="lock2" name="lock-in-question"/>
+        <label for="lock2" class="box variant hidden lock">Ответить</label>
+        <input type="checkbox" id="next2" name="choose-question"/>
+        <label for="next2" class="box variant hidden next">Следующий вопрос</label>
     </div>
 
     <div class="app one" id="app3">
         <h1 class="box">Какое значение атрибута target у ссылки откроет её в новой вкладке?</h1>
 
         <p class="box hidden unknown">Выберите ответ</p>
-        <p class="box hidden true">Ответ верный</p>
-        <p class="box hidden false">Ответ неверный</p>
+        <p class="box hidden show-correct">Ответ верный</p>
+        <p class="box hidden show-not-correct">Ответ неверный</p>
 
         <input type="radio" id="answer3-1" name="question3"/>
-        <label for="answer3-1" class="box variant false">
+        <label for="answer3-1" class="box variant" data-correct="false">
             _self
         </label>
 
         <input type="radio" id="answer3-2" name="question3"/>
-        <label for="answer3-2" class= "box variant false">
+        <label for="answer3-2" class="box variant" data-correct="false">
             _top
         </label>
 
         <input type="radio" id="answer3-3" name="question3"/>
-        <label for="answer3-3" class="box variant true">
+        <label for="answer3-3" class="box variant" data-correct="true">
             _blank
         </label>
 
         <input type="radio" id="answer3-4" name="question3"/>
-        <label for="answer3-4" class="box variant false">
+        <label for="answer3-4" class="box variant" data-correct="false">
             _window
         </label>
 
-        <hr class="hidden lock">
-        <input type="radio" id="lock3" name="choose-question"/>
-        <label for="lock3" class="box variant hidden lock">Следующий вопрос</label>
+        <hr class="hidden next">
+        <input type="radio" id="lock3" name="lock-in-question"/>
+        <label for="lock3" class="box variant hidden lock">Ответить</label>
+        <input type="radio" id="next3" name="choose-question"/>
+        <label for="next3" class="box variant hidden next">Следующий вопрос</label>
     </div>
 
     <div class="app two" id="app4">
         <h1 class="box">Что делает свойство display: flex в CSS?</h1>
 
         <p class="box hidden unknown">Выберите 2 ответа</p>
-        <p class="box hidden true">Ответы верны</p>
-        <p class="box hidden false">Есть ошибка</p>
+        <p class="box hidden show-correct">Ответы верны</p>
+        <p class="box hidden show-not-correct">Есть ошибка</p>
 
-        <input type="checkbox" id="answer4-1" class="question4"/>
-        <label for="answer4-1" class="box variant false">
+        <input type="checkbox" id="answer4-1" name="question4"/>
+        <label for="answer4-1" class="box variant" data-correct="false">
             Задает фиксированный размер контейнера
         </label>
 
-        <input type="checkbox" id="answer4-2" class="question4"/>
-        <label for="answer4-2" class="box variant false">
+        <input type="checkbox" id="answer4-2" name="question4"/>
+        <label for="answer4-2" class="box variant" data-correct="false">
             Добавляет тень элементу
         </label>
 
-        <input type="checkbox" id="answer4-3" class="question4"/>
-        <label for="answer4-3" class="box variant true">
+        <input type="checkbox" id="answer4-3" name="question4"/>
+        <label for="answer4-3" class="box variant" data-correct="true">
             Включает флекс-контейнер, позволяя управлять выравниванием элементов
         </label>
 
-        <input type="checkbox" id="answer4-4" class="question4"/>
-        <label for="answer4-4" class="box variant true">
+        <input type="checkbox" id="answer4-4" name="question4"/>
+        <label for="answer4-4" class="box variant" data-correct="true">
             Позволяет распределять пространство между элементами
         </label>
 
-        <hr class="hidden lock">
-        <input type="radio" id="lock4" name="choose-question"/>
-        <label for="lock4" class="box variant hidden lock">Следующий вопрос</label>
+        <hr class="hidden next">
+        <input type="radio" id="lock4" name="lock-in-question"/>
+        <label for="lock4" class="box variant hidden lock">Ответить</label>
+        <input type="radio" id="next4" name="choose-question"/>
+        <label for="next4" class="box variant hidden next">Следующий вопрос</label>
     </div>
 
     <div class="app one" id="app5">
         <h1 class="box">Что из перечисленного описывает модель «box model» в CSS?</h1>
 
         <p class="box hidden unknown">Выберите ответ</p>
-        <p class="box hidden true">Правильный ответ</p>
-        <p class="box hidden false">Ответ неверен</p>
+        <p class="box hidden show-correct">Правильный ответ</p>
+        <p class="box hidden show-not-correct">Ответ неверен</p>
 
-        <input type="checkbox" id="answer5-1" class="question4"/>
-        <label for="answer5-1" class="box variant false">
+        <input type="radio" id="answer5-1" name="question5"/>
+        <label for="answer5-1" class="box variant" data-correct="false">
             Только margin, padding и border
         </label>
 
-        <input type="checkbox" id="answer5-2" class="question4"/>
-        <label for="answer5-2" class="box variant true">
+        <input type="radio" id="answer5-2" name="question5"/>
+        <label for="answer5-2" class="box variant" data-correct="true">
             Содержимое + padding + border + margin
         </label>
 
-        <input type="checkbox" id="answer5-3" class="question4"/>
-        <label for="answer5-3" class="box variant false">
+        <input type="radio" id="answer5-3" name="question5"/>
+        <label for="answer5-3" class="box variant" data-correct="false">
             Только border и margin
         </label>
 
-        <input type="checkbox" id="answer5-4" class="question4"/>
-        <label for="answer5-4" class="box variant false">
+        <input type="radio" id="answer5-4" name="question5"/>
+        <label for="answer5-4" class="box variant" data-correct="false">
             Только позиционирование
         </label>
 
-        <hr class="hidden lock">
-        <input type="radio" id="lock5" name="choose-question"/>
-        <label for="lock5" class="box variant hidden lock">Следующий вопрос</label>
+        <hr class="hidden next">
+        <input type="radio" id="lock5" name="lock-in-question"/>
+        <label for="lock5" class="box variant hidden lock">Ответить</label>
+        <input type="radio" id="next5" name="choose-question"/>
+        <label for="next5" class="box variant hidden next">Следующий вопрос</label>
     </div>
 
     <div class="app one" id="app6">
         <h1 class="box">Какое значение свойства position фиксирует элемент при прокрутке страницы?</h1>
 
         <p class="box hidden unknown">Выберите ответ</p>
-        <p class="box hidden true">Ответ верен</p>
-        <p class="box hidden false">Ошибка!</p>
+        <p class="box hidden show-correct">Ответ верен</p>
+        <p class="box hidden show-not-correct">Ошибка!</p>
 
-        <input type="checkbox" id="answer6-1" class="question4"/>
-        <label for="answer6-1" class="box variant false">
+        <input type="radio" id="answer6-1" name="question6"/>
+        <label for="answer6-1" class="box variant" data-correct="false">
             relative
         </label>
 
-        <input type="checkbox" id="answer6-2" class="question4"/>
-        <label for="answer6-2" class="box variant true">
+        <input type="radio" id="answer6-2" name="question6"/>
+        <label for="answer6-2" class="box variant" data-correct="true">
             absolute
         </label>
 
-        <input type="checkbox" id="answer6-3" class="question4"/>
-        <label for="answer6-3" class="box variant false">
+        <input type="radio" id="answer6-3" name="question6"/>
+        <label for="answer6-3" class="box variant" data-correct="false">
             fixed
         </label>
 
-        <input type="checkbox" id="answer6-4" class="question4"/>
-        <label for="answer6-4" class="box variant false">
+        <input type="radio" id="answer6-4" name="question6"/>
+        <label for="answer6-4" class="box variant" data-correct="false">
             static
         </label>
 
-        <hr class="hidden lock">
-        <input type="radio" id="lock6" name="choose-question"/>
-        <label for="lock6" class="box variant hidden lock">Следующий вопрос</label>
+        <hr class="hidden next">
+        <input type="radio" id="lock6" name="lock-in-question"/>
+        <label for="lock6" class="box variant hidden lock">Ответить</label>
+        <input type="radio" id="next6" name="choose-question"/>
+        <label for="next6" class="box variant hidden next">Следующий вопрос</label>
     </div>
 
     <div class="app three" id="app7">
         <h1 class="box">Какие из нижеуказанных выражений будут равны true?</h1>
 
         <p class="box hidden unknown">Выберите 3 варианта ответа</p>
-        <p class="box hidden true">Правильно!</p>
-        <p class="box hidden false">Есть ошибка</p>
+        <p class="box hidden show-correct">Правильно!</p>
+        <p class="box hidden show-not-correct">Есть ошибка</p>
 
-        <input type="checkbox" id="answer7-1" class="question4"/>
-        <label for="answer7-1" class="box variant true">
+        <input type="checkbox" id="answer7-1" name="question7"/>
+        <label for="answer7-1" class="box variant" data-correct="true">
             "0" + 0 == "0" == ""
         </label>
 
-        <input type="checkbox" id="answer7-2" class="question4"/>
-        <label for="answer7-2" class="box variant false">
+        <input type="checkbox" id="answer7-2" name="question7"/>
+        <label for="answer7-2" class="box variant" data-correct="false">
             "" == 0 == ""
         </label>
 
-        <input type="checkbox" id="answer7-3" class="question4"/>
-        <label for="answer7-3" class="box variant true">
+        <input type="checkbox" id="answer7-3" name="question7"/>
+        <label for="answer7-3" class="box variant" data-correct="true">
             "0" - [] == [] - "0"
         </label>
 
-        <input type="checkbox" id="answer7-4" class="question4"/>
-        <label for="answer7-4" class="box variant true">
+        <input type="checkbox" id="answer7-4" name="question7"/>
+        <label for="answer7-4" class="box variant" data-correct="true">
             "0" == 0
         </label>
 
-        <input type="checkbox" id="answer7-5" class="question4"/>
-        <label for="answer7-5" class="box variant false">
+        <input type="checkbox" id="answer7-5" name="question7"/>
+        <label for="answer7-5" class="box variant" data-correct="false">
             "" = "0"
         </label>
 
-        <hr class="hidden lock">
-        <input type="radio" id="lock7" name="choose-question"/>
-        <label for="lock7" class="box variant hidden lock">Результат</label>
+        <hr class="hidden next">
+
+        <input type="radio" id="lock7" name="lock-in-question"/>
+        <label for="lock7" class="box variant hidden lock">Ответить</label>
+        <input type="radio" id="next7" name="choose-question"/>
+        <label for="next7" class="box variant hidden next">Результат</label>
     </div>
 
     <div class="app hidden" id="app-result">

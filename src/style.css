@@ -21,7 +21,6 @@ html {
 
 .box {
     display:   block;
-
     &.variant {
         margin:  0.75em 0.75em 0 0;
     }
@@ -54,14 +53,11 @@ html {
         max-width: 450px;
     }
 }
-
 @media (max-width: 600px) {
     .box {
         max-width: 100%;
     }
 }
-
-
 
 :not(label.variant) {
     &.box {
@@ -86,42 +82,42 @@ html {
 
 /* Тут находится логика переключения вопросов (radiobutton)*/
 body {
-    &:has([id="lock0"]:checked) {
+    &:has([id="next0"]:checked) {
         div.app[id*="app"] { display: none; }
         div.app[id="app1"] { display: block; }
     }
 
-    &:has([id="lock1"]:checked) {
+    &:has([id="next1"]:checked) {
         div.app[id*="app"] { display: none; }
         div.app[id="app2"] { display: block; }
     }
 
-    &:has([id="lock2"]:checked) {
+    &:has([id="next2"]:checked) {
         div.app[id*="app"] { display: none; }
         div.app[id="app3"] { display: block; }
     }
 
-    &:has([id="lock3"]:checked) {
+    &:has([id="next3"]:checked) {
         div.app[id*="app"] { display: none; }
         div.app[id="app4"] { display: block; }
     }
 
-    &:has([id="lock4"]:checked) {
+    &:has([id="next4"]:checked) {
         div.app[id*="app"] { display: none; }
         div.app[id="app5"] { display: block; }
     }
 
-    &:has([id="lock5"]:checked) {
-        div.app[id*="app"]       { display: none; }
+    &:has([id="next5"]:checked) {
+        div.app[id*="app"] { display: none; }
         div.app[id="app6"] { display: block; }
     }
 
-    &:has([id="lock6"]:checked) {
-        div.app[id*="app"]       { display: none; }
+    &:has([id="next6"]:checked) {
+        div.app[id*="app"] { display: none; }
         div.app[id="app7"] { display: block; }
     }
 
-    &:has([id="lock7"]:checked) {
+    &:has([id="next7"]:checked) {
         div.app[id*="app"]       { display: none; }
         div.app[id="app-result"] { display: block; }
     }
@@ -130,15 +126,36 @@ body {
 .app {
     .hidden         { display: none; }
     .hidden.unknown { display: block; }
-    .hidden.true    { color: var(--green-color); }
-    .hidden.false   { color: var(--red-color); }
+    .hidden.show-correct    { color: var(--green-color); }
+    .hidden.show-not-correct  { color: var(--red-color); }
+}
+
+input[id*="answer"]:checked + .variant {
+    background: var(--main-color-checked);
+}
+
+.lock {
+    display: none;
 }
 
 /*Общая логика отображения после выбора нужного количества вариантов*/
-.app.one:has(input[id*="answer"]:checked),
-.app.two:has(input[id*="answer"]:checked ~ input[id*="answer"]:checked),
-.app.three:has(input[id*="answer"]:checked ~ input[id*="answer"]:checked ~ input[id*="answer"]:checked) {
-    .hidden.lock    { display: block; }
+.app.one:not(:has(input[id*="lock"]:checked)):has(input[id*="answer"]:checked),
+.app.two:not(:has(input[id*="lock"]:checked)):has(input[id*="answer"]:checked ~ input[id*="answer"]:checked),
+.app.three:not(:has(input[id*="lock"]:checked)):has(input[id*="answer"]:checked ~ input[id*="answer"]:checked ~ input[id*="answer"]:checked) {
+    .lock, hr {
+        display: block;
+    }
+    input[type="checkbox"][id*="answer"]:not(:checked) + .variant {
+        &:hover { transform: scale(1.00); }
+        &:active {
+            pointer-events: none;
+            transition: none;
+        }
+    }
+}
+
+.app:has(input[id*="lock"]:checked) {
+    .hidden.next    { display: block; }
     .hidden.unknown { display: none; }
 
     input[id*="answer"] + .variant {
@@ -149,7 +166,7 @@ body {
         }
     }
 
-    .variant.true, .hidden.true {
+    .variant[data-correct="true"], .hidden.show-correct {
         border-color: var(--green-color);
         color:        var(--green-color);
         &:hover, &:active {
@@ -157,7 +174,7 @@ body {
         }
     }
 
-    .variant.false, .hidden.false {
+    .variant[data-correct="false"], .hidden.show-not-correct {
         border-color: var(--red-color);
         color:        var(--red-color);
         &:hover, &:active {
@@ -165,60 +182,51 @@ body {
         }
     }
 
-    &:has(input[id*="answer"]:checked + .variant.true) {
-        input[id*="answer"]:checked + .variant.true {
+    &:has(input[id*="answer"]:checked + .variant[data-correct="true"]) {
+        input[id*="answer"]:checked + .variant[data-correct="true"] {
             background: var(--green-color-hover);
         }
     }
 
-    &:has(input[id*="answer"]:checked + .variant.false) {
-        input[id*="answer"]:checked + .variant.false {
+    &:has(input[id*="answer"]:checked + .variant[data-correct="false"]) {
+        input[id*="answer"]:checked + .variant[data-correct="false"] {
             background: var(--red-color-hover);
         }
     }
 
-    &:has(input[id*="answer"]:checked + .variant.false) {
-        .hidden.false { display: block; }
+    &:has(input[id*="answer"]:checked + .variant[data-correct="false"]) {
+        .hidden.show-not-correct { display: block; }
     }
-}
 
-/*Логика вывода "правильности" ответов*/
-.app.one:has(input[id*="answer"]:checked + .variant.true),
-.app.two:has(input[id*="answer"]:checked + .variant.true ~ input[id*="answer"]:checked + .variant.true),
-.app.three:has(input[id*="answer"]:checked + .variant.true ~ input[id*="answer"]:checked + .variant.true ~ input[id*="answer"]:checked + .variant.true) {
-    .hidden.true { display: block; }
-}
-
-/*Если не выбрано нужное количество вариантов*/
-.app.one:not(:has(input[id*="answer"]:checked)),
-.app.two:not(:has(input[id*="answer"]:checked ~ input[id*="answer"]:checked)),
-.app.three:not(:has(input[id*="answer"]:checked ~ input[id*="answer"]:checked ~ input[id*="answer"]:checked)) {
-    input[id*="answer"]:checked + .variant {
-        background: var(--main-color-checked);
+    /*Логика вывода "правильности" ответов*/
+    &.one:not(:has(input[id*="answer"]:checked + .variant[data-correct="false"])):has(input[id*="answer"]:checked + .variant[data-correct="true"]),
+    &.two:not(:has(input[id*="answer"]:checked + .variant[data-correct="false"])):has(input[id*="answer"]:checked + .variant[data-correct="true"] ~ input[id*="answer"]:checked + .variant[data-correct="true"]),
+    &.three:not(:has(input[id*="answer"]:checked + .variant[data-correct="false"])):has(input[id*="answer"]:checked + .variant[data-correct="true"] ~ input[id*="answer"]:checked + .variant[data-correct="true"] ~ input[id*="answer"]:checked + .variant[data-correct="true"]) {
+        .hidden.show-correct { display: block; }
     }
 }
 
 /*Логика того, как раскрашиваются ответы в результате*/
 body {
-    &:has(#app1 input[id*="answer1"]:checked + .variant.true) #result1,
-    &:has(#app2 input[id*="answer2"]:checked + .variant.true) #result2,
-    &:has(#app3 input[id*="answer3"]:checked + .variant.true) #result3,
-    &:has(#app4 input[id*="answer4"]:checked + .variant.true) #result4,
-    &:has(#app5 input[id*="answer5"]:checked + .variant.true) #result5,
-    &:has(#app6 input[id*="answer6"]:checked + .variant.true) #result6,
-    &:has(#app7 input[id*="answer7"]:checked + .variant.true) #result7 {
+    &:has(#app1 input[id*="answer1"]:checked + .variant[data-correct="true"]) #result1,
+    &:has(#app2 input[id*="answer2"]:checked + .variant[data-correct="true"]) #result2,
+    &:has(#app3 input[id*="answer3"]:checked + .variant[data-correct="true"]) #result3,
+    &:has(#app4 input[id*="answer4"]:checked + .variant[data-correct="true"]) #result4,
+    &:has(#app5 input[id*="answer5"]:checked + .variant[data-correct="true"]) #result5,
+    &:has(#app6 input[id*="answer6"]:checked + .variant[data-correct="true"]) #result6,
+    &:has(#app7 input[id*="answer7"]:checked + .variant[data-correct="true"]) #result7 {
         border-color: var(--green-color);
         color:        var(--green-color);
         background:   var(--green-color-hover);
     }
 
-    &:has(#app1 input[id*="answer1"]:checked + .variant.false) #result1,
-    &:has(#app2 input[id*="answer2"]:checked + .variant.false) #result2,
-    &:has(#app3 input[id*="answer3"]:checked + .variant.false) #result3,
-    &:has(#app4 input[id*="answer4"]:checked + .variant.false) #result4,
-    &:has(#app5 input[id*="answer5"]:checked + .variant.false) #result5,
-    &:has(#app6 input[id*="answer6"]:checked + .variant.false) #result6,
-    &:has(#app7 input[id*="answer7"]:checked + .variant.false) #result7 {
+    &:has(#app1 input[id*="answer1"]:checked + .variant[data-correct="false"]) #result1,
+    &:has(#app2 input[id*="answer2"]:checked + .variant[data-correct="false"]) #result2,
+    &:has(#app3 input[id*="answer3"]:checked + .variant[data-correct="false"]) #result3,
+    &:has(#app4 input[id*="answer4"]:checked + .variant[data-correct="false"]) #result4,
+    &:has(#app5 input[id*="answer5"]:checked + .variant[data-correct="false"]) #result5,
+    &:has(#app6 input[id*="answer6"]:checked + .variant[data-correct="false"]) #result6,
+    &:has(#app7 input[id*="answer7"]:checked + .variant[data-correct="false"]) #result7 {
         border-color: var(--red-color);
         color:        var(--red-color);
         background:   var(--red-color-hover);
